@@ -1,0 +1,31 @@
+
+@model NeolantTestTask.Models.User
+
+@{
+    ViewData["Title"] = Localizer["CreateUser"];
+}
+
+<h2>@Localizer["CreateUser"]</h2>
+
+<form method="post" asp-action="Create">
+    <div class="mb-3">
+        <label asp-for="Username" class="form-label">@Localizer["Username"]</label>
+        <input asp-for="Username" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Role" class="form-label">@Localizer["Role"]</label>
+        <select asp-for="Role" class="form-control">
+            <option value="User">@Localizer["User"]</option>
+            <option value="Admin">@Localizer["Admin"]</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PasswordHash" class="form-label">@Localizer["Password"]</label>
+        <input type="password" asp-for="PasswordHash" name="password" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-success">@Localizer["Create"]</button>
+    <a asp-action="AdminPanel" class="btn btn-secondary">@Localizer["Cancel"]</a>
+</form>

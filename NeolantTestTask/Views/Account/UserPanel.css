@@ -1,0 +1,60 @@
+/* Профиль */
+.profile {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Аватар */
+.profile .avatar {
+    flex: 0 0 auto;
+}
+
+.profile .avatar img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+/* Информация пользователя */
+.profile-info {
+    flex: 1 1 auto;
+}
+
+.profile-info form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+}
+
+/* Блок питомцев */
+.pets-info {
+    flex: 2 2 auto;
+}
+
+.pets-list {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pet-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Форма добавления питомца */
+.add-pet-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
+}

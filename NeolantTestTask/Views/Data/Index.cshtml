@@ -1,0 +1,41 @@
+
+@model IEnumerable<NeolantTestTask.Models.DataSource>
+
+@{
+    ViewData["Title"] = Localizer["DataIndex"];
+}
+
+<h2>@Localizer["DataSources"]</h2>
+
+<div id="panel">
+    @await Html.PartialAsync("_Panel", Model)
+</div>
+
+<div class="partials">
+    <div id="partial1">
+        @await Html.PartialAsync("_Partial1", Model)
+    </div>
+    <div id="partial2">
+        @await Html.PartialAsync("_Partial2", Model)
+    </div>
+    <div id="partial3">
+        @await Html.PartialAsync("_Partial3", Model)
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // Обновляем панель каждые 5 секунд
+        setInterval(function() {
+            $("#panel").load('@Url.Action("Panel")');
+        }, 5000);
+
+        // Обновляем partial view
+        setInterval(function() {
+            $("#partial1").load('@Url.Action("Partial1")');
+            $("#partial2").load('@Url.Action("Partial2")');
+            $("#partial3").load('@Url.Action("Partial3")');
+        }, 5000);
+    </script>
+}

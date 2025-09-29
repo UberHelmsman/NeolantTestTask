@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="AccessDeniedTitle" xml:space="preserve"><value>Access Denied</value></data>
+  <data name="AccessDeniedMessage" xml:space="preserve"><value>You do not have permission to access this page.</value></data>
+  <data name="Home" xml:space="preserve"><value>Home</value></data>
+  <data name="Privacy" xml:space="preserve"><value>Privacy</value></data>
+  <data name="Login" xml:space="preserve"><value>Login</value></data>
+  <data name="Register" xml:space="preserve"><value>Register</value></data>
+  <data name="Logout" xml:space="preserve"><value>Logout</value></data>
+  <data name="Username" xml:space="preserve"><value>Username</value></data>
+  <data name="Password" xml:space="preserve"><value>Password</value></data>
+  <data name="Role" xml:space="preserve"><value>Role</value></data>
+  <data name="User" xml:space="preserve"><value>User</value></data>
+  <data name="Admin" xml:space="preserve"><value>Admin Panel</value></data>
+  <data name="Name" xml:space="preserve"><value>Name</value></data>
+  <data name="Surname" xml:space="preserve"><value>Surname</value></data>
+  <data name="Email" xml:space="preserve"><value>Email</value></data>
+  <data name="Save" xml:space="preserve"><value>Save</value></data>
+  <data name="Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Create" xml:space="preserve"><value>Create</value></data>
+  <data name="Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="AdminPanelUsers" xml:space="preserve"><value>Admin Panel - Users</value></data>
+  <data name="CreateUser" xml:space="preserve"><value>Create User</value></data>
+  <data name="DeleteUserTitle" xml:space="preserve"><value>Delete User</value></data>
+  <data name="DeleteUserQuestion" xml:space="preserve"><value>Are you sure you want to delete user</value></data>
+  <data name="YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="NewPassword" xml:space="preserve"><value>New password (leave empty if not changing)</value></data>
+  <data name="ProfileTitle" xml:space="preserve"><value>Profile</value></data>
+  <data name="Avatar" xml:space="preserve"><value>Avatar</value></data>
+  <data name="DeleteAvatar" xml:space="preserve"><value>Delete</value></data>
+  <data name="UserData" xml:space="preserve"><value>User Data</value></data>
+  <data name="Pets" xml:space="preserve"><value>Pets</value></data>
+  <data name="AddPet" xml:space="preserve"><value>Add Pet</value></data>
+  <data name="PetType" xml:space="preserve"><value>Pet Type</value></data>
+  <data name="PetName" xml:space="preserve"><value>Pet Name</value></data>
+  <data name="Cat" xml:space="preserve"><value>Cat</value></data>
+  <data name="Dog" xml:space="preserve"><value>Dog</value></data>
+  <data name="DataSources" xml:space="preserve"><value>Data Sources</value></data>
+  <data name="Active" xml:space="preserve"><value>Active</value></data>
+  <data name="Inactive" xml:space="preserve"><value>Inactive</value></data>
+  <data name="Welcome" xml:space="preserve"><value>Welcome</value></data>
+  <data name="HomeDescription" xml:space="preserve"><value>This is the home page of the application.</value></data>
+  <data name="PolicyDescription" xml:space="preserve"><value>Here will be the privacy policy.</value></data>
+  <data name="ErrorTitle" xml:space="preserve"><value>Error</value></data>
+  <data name="ErrorMessage" xml:space="preserve"><value>An error occurred while processing your request.</value></data>
+  <data name="RequestId" xml:space="preserve"><value>Request ID</value></data>
+  <data name="DataSourceName" xml:space="preserve"><value>Name</value></data>
+  <data name="DataSourceStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="DataSourcesListTitle" xml:space="preserve"><value>Data Sources List</value></data>
+  <data name="DataSourceActive" xml:space="preserve"><value>Active</value></data>
+  <data name="DataSourceInactive" xml:space="preserve"><value>Inactive</value></data>
+  <data name="CreateDataSource" xml:space="preserve"><value>Create Data Source</value></data>
+  <data name="EditDataSource" xml:space="preserve"><value>Edit Data Source</value></data>
+  <data name="DeleteDataSource" xml:space="preserve"><value>Delete Data Source</value></data>
+  <data name="DeleteDataSourceQuestion" xml:space="preserve"><value>Are you sure you want to delete this data source?</value></data>
+  <data name="LoggedAs" xml:space="preserve">
+    <value>Logged in as</value>
+  </data>
+  <data name="UserAlreadyExists" xml:space="preserve">
+    <value>User Already Exists</value>
+    <comment>UserAlreadyExists</comment>
+  </data>
+  <data name="InvalidLoginOrPassword" xml:space="preserve">
+    <value>Invalid login or password</value>
+    <comment>InvalidLoginOrPassword</comment>
+  </data>
+  <data name="UserRole" xml:space="preserve">
+    <value>User</value>
+    <comment>UserRole</comment>
+  </data>
+  <data name="AdminRole" xml:space="preserve">
+    <value>Admin</value>
+    <comment>AdminRole</comment>
+  </data>
+</root>

@@ -1,0 +1,31 @@
+
+@model IEnumerable<NeolantTestTask.Models.User>
+@{
+    ViewData["Title"] = Localizer["AdminPanelUsers"];
+}
+<h2>@Localizer["AdminPanelUsers"]</h2>
+<a class="btn btn-success mb-2" asp-action="Create">@Localizer["CreateUser"]</a>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>@Localizer["Username"]</th>
+        <th>@Localizer["Role"]</th>
+        <th>@Localizer["Actions"]</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Id</td>
+            <td>@user.Username</td>
+            <td>@user.Role</td>
+            <td>
+                <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@user.Id">@Localizer["Edit"]</a>
+                <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@user.Id">@Localizer["Delete"]</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

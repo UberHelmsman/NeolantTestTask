@@ -1,0 +1,23 @@
+/* Navbar */
+.navbar-light .nav-link.text-dark {
+    color: #000 !important;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+/* Dropdown языка */
+.language-form {
+    padding: 0.25rem 0.75rem;
+}
+
+.dropdown-menu-end {
+    min-width: 120px;
+}
+
+/* Footer */
+.footer {
+    padding: 15px 0;
+    text-align: center;
+}

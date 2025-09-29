@@ -1,0 +1,121 @@
+﻿@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResource> Localizer
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - NeolantTestTask</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/NeolantTestTask.styles.css" asp-append-version="true"/>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">NeolantTestTask</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Левое меню -->
+                <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Privacy"]</a>
+                    </li>
+                </ul>
+
+                <!-- Правое меню -->
+                <ul class="navbar-nav ms-auto">
+                    <!-- Переключатель языка -->
+                    <li class="nav-item dropdown">
+                        @{
+                            var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+                            var currentCulture = requestCulture?.RequestCulture.Culture.TwoLetterISOLanguageName ?? "ru";
+                        }
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="languageDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            @(currentCulture.ToUpper())
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                            <li>
+                                <form asp-controller="Language" asp-action="SetLanguage" method="post" class="language-form">
+                                    <input type="hidden" name="culture" value="en"/>
+                                    <input type="hidden" name="returnUrl" value="@Context.Request.Path"/>
+                                    <button type="submit" class="btn btn-link text-decoration-none p-0 text-dark">
+                                        English
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form asp-controller="Language" asp-action="SetLanguage" method="post" class="language-form">
+                                    <input type="hidden" name="culture" value="ru"/>
+                                    <input type="hidden" name="returnUrl" value="@Context.Request.Path"/>
+                                    <button type="submit" class="btn btn-link text-decoration-none p-0 text-dark">
+                                        Русский
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <span class="nav-link text-dark">@Localizer["LoggedAs"] @User.Identity.Name</span>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="UserPanel">@Localizer["User"]</a>
+                        </li>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminPanel">@Localizer["Admin"]</a>
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">@Localizer["Logout"]</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">@Localizer["Login"]</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2025 - NeolantTestTask - <a asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Privacy"]</a>
+    </div>
+</footer>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", false)
+</body>
+</html>

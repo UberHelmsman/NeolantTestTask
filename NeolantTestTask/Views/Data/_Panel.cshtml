@@ -1,0 +1,20 @@
+
+@model IEnumerable<NeolantTestTask.Models.DataSource>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>@Localizer["Name"]</th>
+        <th>@Localizer["Status"]</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@(item.IsActive ? Localizer["Active"] : Localizer["Inactive"])</td>
+        </tr>
+    }
+    </tbody>
+</table>

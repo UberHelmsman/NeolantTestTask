@@ -1,0 +1,9 @@
+
+@model IEnumerable<NeolantTestTask.Models.DataSource>
+
+<ul>
+    @foreach(var ds in Model)
+    {
+        <li>@ds.Name - @(ds.IsActive ? Localizer["Active"] : Localizer["Inactive"])</li>
+    }
+</ul>

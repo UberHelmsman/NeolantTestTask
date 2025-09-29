@@ -1,0 +1,83 @@
+@model NeolantTestTask.Models.User
+@{
+    ViewData["Title"] = Localizer["ProfileTitle"];
+    var avatarPath = !string.IsNullOrEmpty(Model.AvatarUrl)
+        ? Url.Content($"~/{Model.AvatarUrl}")
+        : Url.Content("~/images/no_photo.png");
+}
+
+<div class="profile">
+    <div class="avatar">
+        <img src="@avatarPath" alt="@Localizer["Avatar"]" />
+    </div>
+
+    <div class="profile-info">
+        <form asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
+            <label>@Localizer["Avatar"]</label>
+            <div style="display:flex; gap:10px; align-items:center;">
+                <input type="file" name="AvatarFile" class="form-control-file"/>
+                @if (!string.IsNullOrEmpty(Model.AvatarUrl))
+                {
+                    <button type="submit" name="deleteAvatar" value="true" class="btn btn-danger">@Localizer["DeleteAvatar"]</button>
+                }
+            </div>
+
+            <input type="hidden" asp-for="Id"/>
+
+            <h3>@Localizer["UserData"]</h3>
+
+            <label>@Localizer["Username"]</label>
+            <input asp-for="Username" readonly class="form-control"/>
+
+            <div style="display:flex; gap:5px; align-items:center;">
+                <label style="font-weight:bold; margin:0;">@Localizer["Role"]:</label>
+                <span style="font-weight:normal;">@Model.Role</span>
+            </div>
+
+            <label>@Localizer["Name"]</label>
+            <input asp-for="Name" class="form-control"/>
+
+            <label>@Localizer["Surname"]</label>
+            <input asp-for="Surname" class="form-control"/>
+
+            <label>@Localizer["Email"]</label>
+            <input asp-for="Email" class="form-control"/>
+
+            <button type="submit" class="btn btn-primary">@Localizer["Save"]</button>
+        </form>
+    </div>
+
+    <div class="pets-info">
+        @if (Model.Pets != null && Model.Pets.Any())
+        {
+            <label>@Localizer["Pets"]</label>
+            <div class="pets-list">
+                @foreach (var pet in Model.Pets)
+                {
+                    <div class="pet-item">
+                        <span>@pet.GetType().Name: @pet.Name</span>
+                        <form asp-action="DeletePet" method="post" style="margin:0;">
+                            <input type="hidden" name="petId" value="@pet.Id" />
+                            <button type="submit" class="btn btn-sm btn-danger">@Localizer["Delete"]</button>
+                        </form>
+                    </div>
+                }
+            </div>
+        }
+
+        <br/>
+        <h5>@Localizer["AddPet"]</h5>
+        <form asp-action="AddPet" method="post" class="add-pet-form">
+            <label>@Localizer["PetType"]</label>
+            <select name="PetType" class="form-control">
+                <option value="Cat">@Localizer["Cat"]</option>
+                <option value="Dog">@Localizer["Dog"]</option>
+            </select>
+
+            <label>@Localizer["PetName"]</label>
+            <input type="text" name="PetName" class="form-control" required />
+
+            <button type="submit" class="btn btn-success">@Localizer["AddPet"]</button>
+        </form>
+    </div>
+</div>

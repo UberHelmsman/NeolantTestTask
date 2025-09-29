@@ -1,0 +1,17 @@
+
+@model NeolantTestTask.Models.User
+
+@{
+    ViewData["Title"] = Localizer["DeleteUserTitle"];
+}
+
+<h2>@Localizer["DeleteUserTitle"]</h2>
+
+<p>@Localizer["DeleteUserQuestion"] <strong>@Model.Username</strong>?</p>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    
+    <button type="submit" class="btn btn-danger">@Localizer["YesDelete"]</button>
+    <a asp-action="AdminPanel" class="btn btn-secondary">@Localizer["Cancel"]</a>
+</form>

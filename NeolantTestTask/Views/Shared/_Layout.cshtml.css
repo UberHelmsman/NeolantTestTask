@@ -1,0 +1,65 @@
+﻿/* Navbar brand */
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Ссылки */
+a {
+    color: #0077cc;
+}
+
+/* Кнопки */
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Активные nav-pills */
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Границы */
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Тень */
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+/* Кнопка подтверждения политики */
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Футер */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
+/* Dropdown формы языка */
+.language-form {
+    padding: 0.25rem 0.75rem;
+}
+
+/* Navbar текст */
+.navbar-light .nav-link.text-dark {
+    color: #000 !important;
+}
