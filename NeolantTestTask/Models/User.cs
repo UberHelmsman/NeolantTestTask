@@ -10,10 +10,9 @@ public record User
     public string PasswordHash { get; set; } = string.Empty;
     public string Role { get; set; } = "User";
     public List<Animal> Pets { get; set; } = new();
-    
+
     public string? Name { get; set; }
     public string? Surname { get; set; }
     public string? Email { get; set; }
-    public string? AvatarUrl{ get; set; }
-    
+    public string? AvatarUrl { get; set; }
 }

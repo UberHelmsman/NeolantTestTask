@@ -1,6 +1,5 @@
-namespace NeolantTestTask
+namespace NeolantTestTask;
+
+public class SharedResource
 {
-    public class SharedResource
-    {
-    }
 }

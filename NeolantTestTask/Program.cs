@@ -1,32 +1,31 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Localization;
 using System.Globalization;
-
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
 using NeolantTestTask.Data;
 using NeolantTestTask.Models;
 using NeolantTestTask.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Локализация
+
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
 builder.Services.AddControllersWithViews()
     .AddViewLocalization()
     .AddDataAnnotationsLocalization();
 
-// Репозитории и логгер
+
 builder.Services.AddSingleton<ICustomLogger, ConsoleLogger>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IPetsRepository, PetsRepository>();
 builder.Services.AddTransient<IDataSourceRepository, DataSourceRepository>();
 
-// База данных
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=applicationdb.db"));
 
-// Аутентификация и авторизация
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
@@ -69,7 +68,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    "default",
+    "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

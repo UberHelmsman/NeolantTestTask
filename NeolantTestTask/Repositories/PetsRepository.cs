@@ -16,7 +16,7 @@ public class PetsRepository : IPetsRepository
     public async Task<Animal?> GetByIdAsync(int id)
     {
         return await _context.Pets
-            .Include(p => p.Owner)  // загружаем владельца
+            .Include(p => p.Owner) // загружаем владельца
             .FirstOrDefaultAsync(p => p.Id == id);
     }
 
@@ -33,7 +33,7 @@ public class PetsRepository : IPetsRepository
         _context.Pets.Add(data);
         await _context.SaveChangesAsync();
     }
-    
+
 
     public async Task UpdateAsync(Animal data)
     {

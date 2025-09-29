@@ -1,5 +1,5 @@
 
-@model IEnumerable<NeolantTestTask.Models.DataSource>
+@model IEnumerable<DataSource>
 
 @{
     ViewData["Title"] = Localizer["DataIndex"];
@@ -27,12 +27,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         // Обновляем панель каждые 5 секунд
-        setInterval(function() {
+        setInterval(function () {
             $("#panel").load('@Url.Action("Panel")');
         }, 5000);
 
         // Обновляем partial view
-        setInterval(function() {
+        setInterval(function () {
             $("#partial1").load('@Url.Action("Partial1")');
             $("#partial2").load('@Url.Action("Partial2")');
             $("#partial3").load('@Url.Action("Partial3")');

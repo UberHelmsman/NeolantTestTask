@@ -10,4 +10,3 @@ public interface IPetsRepository
     Task UpdateAsync(Animal data);
     Task DeleteAsync(int id);
 }
-

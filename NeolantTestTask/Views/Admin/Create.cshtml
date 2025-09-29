@@ -1,5 +1,5 @@
 
-@model NeolantTestTask.Models.User
+@model User
 
 @{
     ViewData["Title"] = Localizer["CreateUser"];
@@ -10,7 +10,7 @@
 <form method="post" asp-action="Create">
     <div class="mb-3">
         <label asp-for="Username" class="form-label">@Localizer["Username"]</label>
-        <input asp-for="Username" class="form-control" required />
+        <input asp-for="Username" class="form-control" required/>
     </div>
 
     <div class="mb-3">
@@ -23,7 +23,7 @@
 
     <div class="mb-3">
         <label asp-for="PasswordHash" class="form-label">@Localizer["Password"]</label>
-        <input type="password" asp-for="PasswordHash" name="password" class="form-control" required />
+        <input type="password" asp-for="PasswordHash" name="password" class="form-control" required/>
     </div>
 
     <button type="submit" class="btn btn-success">@Localizer["Create"]</button>

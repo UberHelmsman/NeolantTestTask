@@ -1,8 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using NeolantTestTask.Data;
 using NeolantTestTask.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace NeolantTestTask.Repositories;
 
@@ -43,7 +41,7 @@ public class DataSourceRepository : IDataSourceRepository
 
     public async Task UpdateAsync(DataSource data)
     {
-        DataSource? existingData =  await _context.DataSources.FindAsync(data.Id);
+        var existingData = await _context.DataSources.FindAsync(data.Id);
         if (existingData != null)
         {
             existingData.Name = data.Name;
@@ -54,7 +52,7 @@ public class DataSourceRepository : IDataSourceRepository
 
     public async Task DeleteAsync(int id)
     {
-        DataSource? data = await _context.DataSources.FindAsync(id);
+        var data = await _context.DataSources.FindAsync(id);
         if (data != null)
         {
             _context.DataSources.Remove(data);

@@ -1,5 +1,4 @@
 ﻿@using Microsoft.AspNetCore.Localization
-@using Microsoft.Extensions.Localization
 @inject IStringLocalizer<SharedResource> Localizer
 
 <!DOCTYPE html>
@@ -27,10 +26,12 @@
                 <!-- Левое меню -->
                 <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                           asp-action="Index">@Localizer["Home"]</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Privacy"]</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                           asp-action="Privacy">@Localizer["Privacy"]</a>
                     </li>
                 </ul>
 
@@ -48,7 +49,8 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
                             <li>
-                                <form asp-controller="Language" asp-action="SetLanguage" method="post" class="language-form">
+                                <form asp-controller="Language" asp-action="SetLanguage" method="post"
+                                      class="language-form">
                                     <input type="hidden" name="culture" value="en"/>
                                     <input type="hidden" name="returnUrl" value="@Context.Request.Path"/>
                                     <button type="submit" class="btn btn-link text-decoration-none p-0 text-dark">
@@ -57,7 +59,8 @@
                                 </form>
                             </li>
                             <li>
-                                <form asp-controller="Language" asp-action="SetLanguage" method="post" class="language-form">
+                                <form asp-controller="Language" asp-action="SetLanguage" method="post"
+                                      class="language-form">
                                     <input type="hidden" name="culture" value="ru"/>
                                     <input type="hidden" name="returnUrl" value="@Context.Request.Path"/>
                                     <button type="submit" class="btn btn-link text-decoration-none p-0 text-dark">
@@ -75,24 +78,28 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="UserPanel">@Localizer["User"]</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account"
+                               asp-action="UserPanel">@Localizer["User"]</a>
                         </li>
 
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminPanel">@Localizer["Admin"]</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin"
+                                   asp-action="AdminPanel">@Localizer["Admin"]</a>
                             </li>
                         }
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">@Localizer["Logout"]</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account"
+                               asp-action="Logout">@Localizer["Logout"]</a>
                         </li>
                     }
                     else
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">@Localizer["Login"]</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account"
+                               asp-action="Login">@Localizer["Login"]</a>
                         </li>
                     }
                 </ul>
@@ -109,7 +116,8 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2025 - NeolantTestTask - <a asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Privacy"]</a>
+        &copy; 2025 - NeolantTestTask - <a asp-area="" asp-controller="Home"
+                                           asp-action="Privacy">@Localizer["Privacy"]</a>
     </div>
 </footer>
 

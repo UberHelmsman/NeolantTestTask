@@ -1,10 +1,9 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-
 using NeolantTestTask.Models;
 using NeolantTestTask.Repositories;
 
@@ -13,11 +12,12 @@ namespace NeolantTestTask.Controllers;
 public class AccountController : Controller
 {
     private readonly IStringLocalizer<SharedResource> _localizer;
-    private readonly IUserRepository _userRepository;
     private readonly IPetsRepository _petsRepository;
+    private readonly IUserRepository _userRepository;
 
 
-    public AccountController(IUserRepository userRepository, IWebHostEnvironment env, IPetsRepository petsRepository, IStringLocalizer<SharedResource> localizer)
+    public AccountController(IUserRepository userRepository, IWebHostEnvironment env, IPetsRepository petsRepository,
+        IStringLocalizer<SharedResource> localizer)
     {
         _userRepository = userRepository;
         _petsRepository = petsRepository;
@@ -39,7 +39,7 @@ public class AccountController : Controller
             {
                 new(ClaimTypes.Name, user.Username),
                 new(ClaimTypes.Role, user.Role),
-                new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new(ClaimTypes.NameIdentifier, user.Id.ToString())
             };
 
             var claimsIdentity = new ClaimsIdentity(
@@ -98,10 +98,7 @@ public class AccountController : Controller
     public async Task<IActionResult> UserPanel()
     {
         var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
-        if (userIdClaim == null)
-        {
-            return RedirectToAction("login", "account");
-        }
+        if (userIdClaim == null) return RedirectToAction("login", "account");
         var userId = int.Parse(userIdClaim.Value);
 
         var user = await _userRepository.GetByIdAsync(userId);
@@ -110,16 +107,14 @@ public class AccountController : Controller
 
         return View(user);
     }
-    
-    
+
+
     [HttpPost]
     [Authorize]
     public async Task<IActionResult> AddPet(string PetType, string PetName)
     {
-        if (!int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int userId))
-        {
+        if (!int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out var userId))
             return RedirectToAction("login", "account");
-        }
         var user = await _userRepository.GetByIdAsync(userId);
         if (user == null) return RedirectToAction("login", "account");
 
@@ -136,19 +131,17 @@ public class AccountController : Controller
 
         return RedirectToAction("UserPanel");
     }
-    
+
     [HttpPost]
     [Authorize]
     public async Task<IActionResult> DeletePet(int petId)
     {
-        if (!int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int userId))
-        {
+        if (!int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out var userId))
             return RedirectToAction("login", "account");
-        }
         var user = await _userRepository.GetByIdAsync(userId);
         if (user == null) return RedirectToAction("login", "account");
 
-        
+
         var pet = user.Pets.FirstOrDefault(p => p.Id == petId);
         if (pet != null)
         {
@@ -161,8 +154,6 @@ public class AccountController : Controller
     }
 
 
-    
-    
     [HttpPost]
     [Authorize]
     public async Task<IActionResult> UpdateProfile(User updatedUser, IFormFile? AvatarFile, string? deleteAvatar)
@@ -170,31 +161,33 @@ public class AccountController : Controller
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
         var user = await _userRepository.GetByIdAsync(userId);
         if (user == null) return NotFound();
-        
+
         user.Username = updatedUser.Username;
         user.Name = updatedUser.Name;
         user.Surname = updatedUser.Surname;
         user.Email = updatedUser.Email;
 
-        string uploadsFolder = Path.Combine("wwwroot", "images", "users");
-        
+        var uploadsFolder = Path.Combine("wwwroot", "images", "users");
+
         if (!string.IsNullOrEmpty(deleteAvatar) && deleteAvatar == "true")
         {
             if (!string.IsNullOrEmpty(user.AvatarUrl))
             {
-                var filePath = Path.Combine("wwwroot", user.AvatarUrl.Replace("/", Path.DirectorySeparatorChar.ToString()));
+                var filePath = Path.Combine("wwwroot",
+                    user.AvatarUrl.Replace("/", Path.DirectorySeparatorChar.ToString()));
                 if (System.IO.File.Exists(filePath))
                     System.IO.File.Delete(filePath);
             }
+
             user.AvatarUrl = null;
         }
-        
+
         if (AvatarFile != null && AvatarFile.Length > 0)
         {
             Directory.CreateDirectory(uploadsFolder);
 
-            string fileName = $"{user.Id}_{Guid.NewGuid()}{Path.GetExtension(AvatarFile.FileName)}";
-            string filePath = Path.Combine(uploadsFolder, fileName);
+            var fileName = $"{user.Id}_{Guid.NewGuid()}{Path.GetExtension(AvatarFile.FileName)}";
+            var filePath = Path.Combine(uploadsFolder, fileName);
 
             using var fileStream = new FileStream(filePath, FileMode.Create);
             await AvatarFile.CopyToAsync(fileStream);
@@ -206,7 +199,4 @@ public class AccountController : Controller
 
         return RedirectToAction("UserPanel");
     }
-
-    
-
 }
