@@ -121,9 +121,9 @@ public class AccountController : Controller
         Animal newPet;
 
         if (PetType == "Cat")
-            newPet = new Cat { Name = PetName, OwnerId = user.Id };
+            newPet = new Cat { Name = PetName, OwnerId = user.Id ,Owner = user};
         else
-            newPet = new Dog { Name = PetName, OwnerId = user.Id };
+            newPet = new Dog { Name = PetName, OwnerId = user.Id , Owner = user};
 
         user.Pets.Add(newPet);
 
@@ -158,7 +158,8 @@ public class AccountController : Controller
     [Authorize]
     public async Task<IActionResult> UpdateProfile(User updatedUser, IFormFile? AvatarFile, string? deleteAvatar)
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        if (!int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out var userId))
+            return RedirectToAction("login", "account");
         var user = await _userRepository.GetByIdAsync(userId);
         if (user == null) return NotFound();
 

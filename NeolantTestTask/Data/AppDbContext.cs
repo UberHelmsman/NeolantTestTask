@@ -18,19 +18,22 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        User adminUser = new User
+        {
+            Id = 1,
+            Username = "admin",
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin"),
+            Role = "Admin"
+        };
+        
+        
         modelBuilder.Entity<Animal>()
             .HasDiscriminator<string>("AnimalType")
             .HasValue<Cat>("Cat")
             .HasValue<Dog>("Dog");
 
         modelBuilder.Entity<User>().HasData(
-            new User
-            {
-                Id = 1,
-                Username = "admin",
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin"),
-                Role = "Admin"
-            }
+            adminUser
         );
 
         modelBuilder.Entity<User>()
@@ -47,10 +50,10 @@ public class AppDbContext : DbContext
         );
 
         modelBuilder.Entity<Cat>().HasData(
-            new Cat { Id = 1, Name = "Kot", OwnerId = 1 }
+            new Cat { Id = 1, Name = "Kot", OwnerId = 1 ,Owner = adminUser}
         );
         modelBuilder.Entity<Dog>().HasData(
-            new Dog { Id = 2, Name = "Sobaka", OwnerId = 1 }
+            new Dog { Id = 2, Name = "Sobaka", OwnerId = 1 ,Owner = adminUser}
         );
     }
 }

@@ -1,3 +1,7 @@
+/* ---------------------------------------------------------------------- */
+/* Общие стили и стили навигации */
+/* ---------------------------------------------------------------------- */
+
 html {
     font-size: 14px;
 }
@@ -8,24 +12,107 @@ html {
     }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+/* Стили для формы переключения языка в навигации */
+.lang-switcher .btn-link {
+    /* Стилизуем кнопку внутри формы переключения языка, чтобы она выглядела как пункт меню */
+    width: 100%;
+    text-align: left;
+    padding: .25rem 1rem;
 }
 
-html {
-    position: relative;
-    min-height: 100%;
+/* ---------------------------------------------------------------------- */
+/* Стили для компонента: Profile (Профиль пользователя) */
+/* ---------------------------------------------------------------------- */
+
+/* Block: profile-page - Основной контейнер, задающий 3-колоночный макет */
+.profile-page {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
 }
 
-body {
-    margin-bottom: 60px;
+/* Element: profile-page__sidebar - Секция аватара (фиксированная) */
+.profile-page__sidebar {
+    flex: 0 0 auto;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-    color: var(--bs-secondary-color);
-    text-align: end;
+/* Element: profile-page__main - Секция данных пользователя (1 часть ширины) */
+.profile-page__main {
+    flex: 1 1 auto;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-    text-align: start;
+/* Element: profile-page__pets - Секция питомцев (2 части ширины) */
+.profile-page__pets {
+    flex: 2 2 auto;
+}
+
+/* Element: profile-page__avatar - Изображение аватара */
+.profile-page__avatar {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+/* Element: profile-form - Форма для обновления данных */
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+}
+
+/* Element: profile-form__upload-control - Группа для загрузки аватара */
+.profile-form__upload-control {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Element: profile-form__role-display - Отображение роли */
+.profile-form__role-display {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.profile-form__role-display label {
+    font-weight: bold;
+    margin: 0;
+}
+
+.profile-form__role-display span {
+    font-weight: normal;
+}
+
+/* Element: pet-list - Контейнер списка питомцев */
+.pet-list {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Element: pet-list__item - Отдельный элемент питомца */
+.pet-list__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Element: pet-list__delete-form - Форма удаления питомца */
+.pet-list__delete-form {
+    margin: 0;
+}
+
+/* Element: pet-add-form - Форма для добавления питомца */
+.pet-add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
 }

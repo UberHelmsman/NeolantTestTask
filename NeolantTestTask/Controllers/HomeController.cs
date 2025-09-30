@@ -25,7 +25,7 @@ public class HomeController : Controller
 
 
     [HttpGet]
-    public IActionResult SetLanguage(string culture, string returnUrl = null)
+    public IActionResult SetLanguage(string culture, string? returnUrl = null)
     {
         if (!string.IsNullOrEmpty(culture))
             Response.Cookies.Append(

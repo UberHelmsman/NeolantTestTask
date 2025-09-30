@@ -23,7 +23,6 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Левое меню -->
                 <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home"
@@ -35,43 +34,34 @@
                     </li>
                 </ul>
 
-                <!-- Правое меню -->
                 <ul class="navbar-nav ms-auto">
-                    <!-- Переключатель языка -->
                     <li class="nav-item dropdown">
                         @{
-                            var requestCulture = Context.Features.Get<IRequestCultureFeature>();
-                            var currentCulture = requestCulture?.RequestCulture.Culture.TwoLetterISOLanguageName ?? "ru";
+                            var currentCulture = Context.Features.Get<IRequestCultureFeature>()?.RequestCulture.Culture.TwoLetterISOLanguageName ?? "ru";
+                            var returnUrl = Context.Request.Path.ToString();
                         }
                         <a class="nav-link dropdown-toggle text-dark" href="#" id="languageDropdown" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">
                             @(currentCulture.ToUpper())
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                            <li>
-                                <form asp-controller="Language" asp-action="SetLanguage" method="post"
-                                      class="language-form">
-                                    <input type="hidden" name="culture" value="en"/>
-                                    <input type="hidden" name="returnUrl" value="@Context.Request.Path"/>
-                                    <button type="submit" class="btn btn-link text-decoration-none p-0 text-dark">
-                                        English
-                                    </button>
-                                </form>
-                            </li>
-                            <li>
-                                <form asp-controller="Language" asp-action="SetLanguage" method="post"
-                                      class="language-form">
-                                    <input type="hidden" name="culture" value="ru"/>
-                                    <input type="hidden" name="returnUrl" value="@Context.Request.Path"/>
-                                    <button type="submit" class="btn btn-link text-decoration-none p-0 text-dark">
-                                        Русский
-                                    </button>
-                                </form>
-                            </li>
+                            @foreach (var lang in new[] { new { Code = "en", Name = "English" }, new { Code = "ru", Name = "Русский" } })
+                            {
+                                <li>
+                                    <form asp-controller="Language" asp-action="SetLanguage" method="post"
+                                          class="lang-switcher">
+                                        <input type="hidden" name="culture" value="@lang.Code"/>
+                                        <input type="hidden" name="returnUrl" value="@returnUrl"/>
+                                        <button type="submit" class="btn btn-link text-decoration-none p-0 text-dark">
+                                            @lang.Name
+                                        </button>
+                                    </form>
+                                </li>
+                            }
                         </ul>
                     </li>
 
-                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    @if (User.Identity?.IsAuthenticated == true)
                     {
                         <li class="nav-item">
                             <span class="nav-link text-dark">@Localizer["LoggedAs"] @User.Identity.Name</span>

@@ -1,42 +1,73 @@
-/* Профиль */
-.profile {
+/* Outer container for the entire profile page */
+.profile-container {
+    /* Main layout: three columns with a 30px gap between them */
     display: flex;
     gap: 30px;
-    align-items: flex-start;
+    align-items: flex-start; /* Aligns content to the top */
 }
 
-/* Аватар */
-.profile .avatar {
+/* 1. Avatar Section (Fixed width) */
+.avatar-section {
+    /* flex:0 0 auto; - ensures it doesn't grow and its size is fixed based on content */
     flex: 0 0 auto;
 }
 
-.profile .avatar img {
+/* Profile image styling */
+.profile-avatar {
     width: 150px;
     height: 150px;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 50%; /* Makes it circular */
     border: 1px solid #ccc;
     padding: 5px;
 }
 
-/* Информация пользователя */
+/* 2. Profile Info Section (Flexible width - 1 part) */
 .profile-info {
+    /* flex:1 1 auto; - allows it to grow/shrink, taking 1 part of available space */
     flex: 1 1 auto;
 }
 
-.profile-info form {
+/* Profile form styling (User Data) */
+.profile-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 400px;
+    max-width: 400px; /* Limits the width of the form elements */
 }
 
-/* Блок питомцев */
+/* Styling for the Avatar file input and delete button group */
+.avatar-upload-control {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Styling for the Role display */
+.user-role-display {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.user-role-display .role-label {
+    font-weight: bold;
+    margin: 0;
+}
+
+.user-role-display .role-value {
+    font-weight: normal;
+}
+
+/* 3. Pets Info Section (Flexible width - 2 parts) */
 .pets-info {
+    /* flex:2 2 auto; - allows it to grow/shrink, taking 2 parts of available space, 
+       making it twice as wide as .profile-info */
     flex: 2 2 auto;
 }
 
-.pets-list {
+/* Styling for the box containing the list of current pets */
+.pets-list-box {
     border: 1px solid #ccc;
     padding: 15px;
     border-radius: 8px;
@@ -45,13 +76,19 @@
     gap: 5px;
 }
 
+/* Styling for an individual pet item in the list */
 .pet-item {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Puts name on the left and button on the right */
     align-items: center;
 }
 
-/* Форма добавления питомца */
+/* Form for deleting a pet to ensure no extra margin */
+.delete-pet-form {
+    margin: 0;
+}
+
+/* Form for adding a new pet */
 .add-pet-form {
     display: flex;
     flex-direction: column;
